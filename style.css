@@ -82,6 +82,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .copy .wrap { padding-bottom: 10vh; }
 .copy .reveal { opacity: var(--reveal, 1); visibility: var(--shown, visible); }
 .mark-slot { width: min(520px, 62vw); aspect-ratio: 565 / 92; }
+.mark { width: min(520px, 62vw); } /* 按大字尺寸栅格化，缩进顶栏时只缩小，不会糊 */
 .hero h1 { margin-top: 40px; max-width: 13em; font-size: clamp(38px, 5.6vw, 76px); line-height: 1.24; letter-spacing: .08em; text-wrap: balance; }
 .lede { margin-top: 24px; max-width: 30em; font-size: clamp(15px, 1.2vw, 17px); color: var(--ink-2); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
@@ -167,7 +168,7 @@ h2 { margin-top: 10px; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.3; le
   position: relative; overflow-x: clip; color: #fff; padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); /* 只裁横向，跃鱼可以跳出页脚上沿 */
   background: linear-gradient(180deg, var(--sea) 0, var(--sea) calc(clamp(220px, 24vw, 340px) + 120px), var(--deep) 100%);
 }
-.sea { position: relative; height: clamp(220px, 24vw, 340px); background: linear-gradient(180deg, var(--bg) 0%, #E3F4FC 40%, #BFE7FA 100%); }
+.sea { position: relative; height: clamp(220px, 24vw, 340px); clip-path: inset(-100vh 0 0 0); /* 只裁下沿：跃鱼落到海底以下就藏起来，往上仍能跳出 */ background: linear-gradient(180deg, var(--bg) 0%, #E3F4FC 40%, #BFE7FA 100%); }
 .wave { position: absolute; left: 0; width: 100%; height: 46%; overflow: hidden; }
 .wave svg { display: block; width: 200%; height: 100%; animation: tide 30s linear infinite; }
 .wave .crest { fill: none; stroke: rgba(255, 255, 255, .7); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
@@ -212,8 +213,8 @@ h2 { margin-top: 10px; font-size: clamp(30px, 3.6vw, 46px); line-height: 1.3; le
   :root { --amp: .55; }
   .wrap, .bar-in { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
   .bar-in { height: 58px; }
-  .logo, .mark { width: 132px; }
-  .mark-slot { width: min(320px, 78vw); }
+  .logo { width: 132px; }
+  .mark-slot, .mark { width: min(320px, 78vw); }
   .nav { display: none; }
   .lang { margin-left: auto; }
   .hero { height: 185vh; height: 185svh; }

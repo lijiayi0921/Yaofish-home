@@ -110,7 +110,8 @@
     mist(ctx, H, H * .14, .95);
   }
 
-  // ---------- 首屏：遮住仙山的云，每缕预先画成贴图（半分辨率，云本来就软），散开时只做位移、拉伸与淡出 ----------
+  // ---------- 首屏：遮住仙山的云，每缕预先画成贴图，散开时只做位移、拉伸与淡出 ----------
+  // 贴图按 1 个 CSS 像素一格画（高分屏也不再加倍，省内存），半分辨率放大后会出马赛克
   var sprites = [];
   function buildVeil() {
     veil.width = Math.round(HW * DPR); veil.height = Math.round(HH * DPR);
@@ -119,9 +120,8 @@
     for (var i = 0; i < 52; i++) {
       var z = r(), len = U * (.3 + r() * .4), thick = (22 + r() * 30) * k * (.7 + z * .6), pad = thick * 3;
       var c = document.createElement('canvas'), w = len + pad * 2, h = thick * 6;
-      c.width = Math.ceil(w / 2); c.height = Math.ceil(h / 2);
+      c.width = Math.ceil(w); c.height = Math.ceil(h);
       var ctx = c.getContext('2d');
-      ctx.scale(.5, .5);
       wisp(ctx, pad, h / 2, len, thick, .13 + r() * .06, 100 + i);
       var x = HW * (-.1 + r() * 1.2);
       sprites.push({ c: c, w: w, h: h, x: x, y: HH * (.02 + r() * .96), z: z, side: x < HW / 2 ? -1 : 1 });
@@ -133,6 +133,7 @@
   function drawVeil(p) {
     var ctx = veil.getContext('2d'), e = easeOut(p);
     ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.imageSmoothingQuality = 'high'; // 散开时贴图被横向拉长，高质量插值免得放大成块
     ctx.clearRect(0, 0, HW, HH);
     sprites.forEach(function (s) {
       var a = 1 - smooth(.05 + s.z * .15, .8, p);
@@ -250,8 +251,8 @@
   var fish = null, seaVisible = false, seaSeen = false, leapTimer = 0;
   function jump() {
     var fw = leap.offsetWidth, fh = leap.offsetHeight, T = .8; // T：升到最高点用时
-    var rise = fh * 2.4, g = 2 * rise / (T * T);
-    fish = { x: sea.clientWidth * (.06 + Math.random() * .58), y: fh * 1.3, y0: fh * 1.3, vx: fw * 2.3 / (2 * T), vy: -g * T, g: g, boosted: false, last: performance.now() };
+    var y0 = sea.clientHeight * .6, rise = y0 + fh * 1.1, g = 2 * rise / (T * T); // 从海的下沿以下起跳、落回，看不见的部分由 .sea 裁掉
+    fish = { x: sea.clientWidth * (.06 + Math.random() * .58), y: y0, y0: y0, vx: fw * 2.3 / (2 * T), vy: -g * T, g: g, boosted: false, last: performance.now() };
     leap.classList.add('go');
     requestAnimationFrame(fly);
   }
@@ -329,7 +330,7 @@
   function placeMark(q) {
     var s = slot.getBoundingClientRect(), d = dock.getBoundingClientRect();
     q = q * q * (3 - 2 * q);
-    var k = (s.width + (d.width - s.width) * q) / d.width;
+    var k = (s.width + (d.width - s.width) * q) / mark.offsetWidth;
     mark.style.transform = 'translate3d(' + (s.left + (d.left - s.left) * q).toFixed(1) + 'px,' +
       (s.top + (d.top - s.top) * q).toFixed(1) + 'px,0) scale(' + k.toFixed(4) + ')';
   }
