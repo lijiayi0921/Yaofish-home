@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>yaofish 鳐鳐鱼</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="yaofish 鳐鳐鱼 · 轻松好玩的家庭桌游，用桌游连接每一个家庭。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-ribbon" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#01B1FF" stop-opacity="0"/>
+      <stop offset=".18" stop-color="#01B1FF"/>
+      <stop offset=".75" stop-color="#5CCBFF"/>
+      <stop offset="1" stop-color="#BFE9FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<header class="bar" id="bar">
+  <div class="bar-in">
+    <span class="logo dock" aria-hidden="true"></span>
+    <nav class="nav" aria-label="主导航">
+      <a href="#games" data-en="Games">游戏</a>
+      <a href="#story" data-en="Our story">品牌</a>
+      <a href="#news" data-en="News">新闻活动</a>
+      <a href="#contact" data-en="Contact">联系我们</a>
+    </nav>
+    <button type="button" class="lang" id="lang" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+<!-- 同一个字标：首屏里是大字，滚动时缩进顶栏左上角 -->
+<a class="mark" id="mark" href="#top" aria-label="yaofish 鳐鳐鱼"></a>
+
+<main>
+
+<!-- ========== 首屏：云遮仙山。滚动时画面先停住，云向两侧散开、丝带画出，之后才随页面卷走 ========== -->
+<section class="hero" id="top">
+  <div class="pin">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <svg class="ribbon" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path class="band" d="M-60 720C200 640 420 720 660 640C860 570 900 400 1080 340C1240 290 1350 320 1500 240"/>
+      <path class="strand" d="M-60 750C220 670 440 750 680 670C880 600 930 430 1100 370C1260 320 1360 350 1500 280"/>
+    </svg>
+    <div class="copy" id="copy">
+      <div class="wrap">
+        <div class="mark-slot" id="slot" aria-hidden="true"></div>
+        <h1 class="reveal" data-en="Board games<br>that bring families together">用桌游，<br>连接每一个家庭</h1>
+        <p class="lede reveal" data-en="The yao fish has a fish's body and a bird's wings, and roams between sea and sky. We make relaxed, easy-to-learn board games, so the whole family can gather round one table.">鳐鳐鱼鱼身双翅，遨游于天地海之间。我们做轻松好玩的家庭桌游，规则一学就会，让一家人围坐一桌，人人有所收获。</p>
+        <div class="ctas reveal">
+          <a class="btn solid" href="#games" data-en="See the games">看看游戏</a>
+          <a class="btn ghost" href="#story" data-en="Where the name comes from">鳐鳐鱼的来历</a>
+        </div>
+      </div>
+    </div>
+    <canvas id="veil" aria-hidden="true"></canvas>
+    <p class="hint" id="hint" data-en="Scroll">向下滚动</p>
+  </div>
+</section>
+
+<!-- ========== 游戏 ========== -->
+<section class="games" id="games">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="kicker" data-en="Games">游戏</p>
+        <h2 data-en="One family, one table">一家人，一张桌</h2>
+        <p class="sub" data-en="Easy rules every age can pick up. From history and landscapes to pure imagination, there is a box for every family.">规则轻松，老少都能一起玩。从山河历史到天马行空，总有一盒适合你家。</p>
+      </div>
+      <a class="more" href="https://yaofishgames.com/all-games/" target="_blank" rel="noopener" data-en="All games →">全部游戏 →</a>
+    </div>
+    <div class="grid" id="gameGrid"></div>
+  </div>
+</section>
+
+<!-- ========== 品牌故事 ========== -->
+<section class="story scene" id="story" data-scene>
+  <span class="layer glyph" aria-hidden="true">鳐</span>
+  <div class="layer drift story-clouds" aria-hidden="true"><canvas data-clouds="43,9,.9,.09,.05,.95"></canvas></div>
+  <svg class="layer ribbon story-ribbon" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="silk" pathLength="1" d="M1500 560C1240 520 1100 640 880 620C660 600 560 520 360 560C200 592 120 660 -60 680"/>
+  </svg>
+  <div class="wrap story-in">
+    <figure class="classic">
+      <blockquote data-en="“Here live many wenyao fish. They look like carp, with a fish's body and a bird's wings… They travel the Western Sea, swim to the Eastern Sea, and fly by night. When they appear, the land has a great harvest.”">是多文鳐鱼，状如鲤鱼，鱼身而鸟翼，苍文而白首赤喙，常行西海，游于东海，以夜飞。见则天下大穰。</blockquote>
+      <figcaption data-en="— Classic of Mountains and Seas">《山海经 · 西山经》</figcaption>
+    </figure>
+    <div class="story-text">
+      <p class="kicker" data-en="Our story">品牌</p>
+      <h2 data-en="Who is the yao fish?">鳐鳐鱼是谁</h2>
+      <p data-en="Legend says the yao fish has a fish's body and two wings, and swims through both sea and sky. When it appears, the realm is at peace and the harvest is rich.">传说鳐鳐鱼鱼身双翅，遨游于海洋与天空。它一出现，预示天下太平、作物丰收。</p>
+      <p data-en="That is what we hope our games do: help children grow into free thinkers who cross every boundary, roaming between sky, land and sea. And give families more evenings around the same table, where everyone comes away with something.">这也是我们做桌游的愿景：希望孩子成为没有框架约束的跨界人才，自由遨游于天地海之间；也希望一盒桌游，让家里多一段围坐的时光，人人都能有所收获。</p>
+      <ul class="tags">
+        <li data-en="Original designs">原创设计</li>
+        <li data-en="Family play">家庭亲子</li>
+        <li data-en="Learn through play">玩中有学</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 新闻活动 ========== -->
+<section class="news" id="news">
+  <div class="wrap">
+    <div class="shead">
+      <div>
+        <p class="kicker" data-en="News &amp; events">新闻活动</p>
+        <h2 data-en="Around the table">桌边新事</h2>
+      </div>
+    </div>
+    <div class="ngrid">
+      <article class="ncard">
+        <img src="assets/news/tenth.webp" alt="父子在庭院里玩桌游" data-en-alt="A father and son playing in a courtyard" width="720" height="900" loading="lazy">
+        <p class="cat" style="--dot:#01B1FF" data-en="Company">公司动态</p>
+        <h3 data-en="yaofish turns ten">鳐鳐鱼十周年</h3>
+      </article>
+      <article class="ncard">
+        <img src="assets/news/night.webp" alt="一家人在帐篷下玩桌游" data-en-alt="A family playing under a tent" width="720" height="900" loading="lazy">
+        <p class="cat" style="--dot:#F0C239" data-en="Brand event">品牌活动</p>
+        <h3 data-en="Board game nights">桌游之夜</h3>
+      </article>
+      <article class="ncard">
+        <img src="assets/news/light.webp" alt="妈妈和孩子在窗边玩桌游" data-en-alt="A mother and child playing by the window" width="720" height="900" loading="lazy">
+        <p class="cat" style="--dot:#F3A694" data-en="Giving back">品牌公益</p>
+        <h3 data-en="The Yaoguang Project">鳐光计划</h3>
+      </article>
+      <article class="ncard">
+        <img src="assets/news/expo.webp" alt="孩子举起桌游盒子" data-en-alt="A child holding up a game box" width="720" height="900" loading="lazy">
+        <p class="cat" style="--dot:#5AA4AE" data-en="Fairs">展会活动</p>
+        <h3 data-en="Meet us at the fairs">展会与见面</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ========== 页脚：云下是海 ========== -->
+<footer class="foot scene" id="contact" data-scene>
+  <div class="sea" aria-hidden="true">
+    <div class="wave w1"><svg viewBox="0 0 2880 100" preserveAspectRatio="none" data-wave="9,720,0"></svg></div>
+    <div class="layer drift sea-clouds"><canvas data-clouds="57,12,1,.11,.1,.6"></canvas></div>
+    <div class="wave w2"><svg viewBox="0 0 2880 100" preserveAspectRatio="none" data-wave="11,480,1.4"></svg></div>
+    <img class="leap" id="leap" src="assets/fish.webp" alt="" width="760" height="672">
+    <div class="wave w3"><svg viewBox="0 0 2880 100" preserveAspectRatio="none" data-wave="13,720,2.6"></svg></div>
+    <div class="wave w4"><svg viewBox="0 0 2880 100" preserveAspectRatio="none" data-wave="10,360,4"></svg></div>
+  </div>
+  <div class="wrap cols">
+    <div>
+      <h4 data-en="Games">产品</h4>
+      <ul>
+        <li><a href="https://yaofishgames.com/all-games/" target="_blank" rel="noopener" data-en="All games">全部游戏</a></li>
+        <li><a href="#games" data-en="Featured games">精选游戏</a></li>
+        <li><a href="#story" data-en="Our story">品牌故事</a></li>
+        <li><a href="#news" data-en="News &amp; events">新闻活动</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Contact">联系我们</h4>
+      <ul>
+        <li data-en="Customer service">售后服务</li>
+        <li data-en="Become a retailer">成为经销商</li>
+        <li data-en="Press">媒体合作</li>
+        <li data-en="Submit a game">游戏投稿</li>
+        <li data-en="Licensing">国际授权及版权</li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Follow us">关注</h4>
+      <ul>
+        <li data-en="WeChat">微信公众号</li>
+        <li data-en="Xiaohongshu">小红书</li>
+        <li data-en="Douyin">抖音</li>
+        <li data-en="Bilibili">B 站</li>
+        <li data-en="Weibo">微博</li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Brands">品牌</h4>
+      <ul>
+        <li><a href="https://yaofishgames.com/" target="_blank" rel="noopener">yaofish 鳐鳐鱼</a></li>
+        <li>YaoPlay</li>
+        <li>Gameland</li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-en="Resources">资料</h4>
+      <ul>
+        <li data-en="Product catalogue">产品手册下载</li>
+        <li data-en="Brand book">品牌手册下载</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-mark"><span class="logo" role="img" aria-label="yaofish 鳐鳐鱼"></span></div>
+  <div class="wrap legal"><span data-en="© 2026 yaofish · Ningbo, Zhejiang">© 2026 yaofish 鳐鳐鱼 · 浙江宁波</span></div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
