@@ -222,6 +222,7 @@
       el.style.setProperty('--shown', o > .02 ? 'visible' : 'hidden');
     });
     hint.style.opacity = (1 - smooth(0, .1, a)).toFixed(3);
+    mark.style.opacity = smooth(.05, .4, a).toFixed(3); // 字标随云散而浮现
   }
 
   function layoutHero() {
@@ -250,7 +251,7 @@
   function jump() {
     var fw = leap.offsetWidth, fh = leap.offsetHeight, T = .8; // T：升到最高点用时
     var rise = fh * 2.4, g = 2 * rise / (T * T);
-    fish = { x: sea.clientWidth * (.06 + Math.random() * .58), y: fh * 1.15, y0: fh * 1.15, vx: fw * 2.3 / (2 * T), vy: -g * T, g: g, boosted: false, last: performance.now() };
+    fish = { x: sea.clientWidth * (.06 + Math.random() * .58), y: fh * 1.3, y0: fh * 1.3, vx: fw * 2.3 / (2 * T), vy: -g * T, g: g, boosted: false, last: performance.now() };
     leap.classList.add('go');
     requestAnimationFrame(fly);
   }
@@ -266,7 +267,6 @@
       return;
     }
     var angle = Math.atan2(fish.vy, fish.vx) * 180 / Math.PI * .8;
-    leap.style.opacity = clamp((fish.y0 - fish.y) / (leap.offsetHeight * .9), 0, 1).toFixed(3); // 水面以下看不见
     leap.style.transform = 'translate3d(' + fish.x.toFixed(1) + 'px,' + fish.y.toFixed(1) + 'px,0) rotate(' + angle.toFixed(1) + 'deg)';
     requestAnimationFrame(fly);
   }
