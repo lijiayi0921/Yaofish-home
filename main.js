@@ -289,6 +289,31 @@
     }, { threshold: .6 }).observe(sea);
   }
 
+  // ---------- 头条轮播：横滑或点圆点切换，每 6 秒自动翻到下一张；悬停或聚焦时停住 ----------
+  var slides = document.getElementById('slides'), dotBox = document.getElementById('dots');
+  var dots = [].map.call(slides.children, function (s, i, all) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('aria-label', (i + 1) + ' / ' + all.length);
+    b.addEventListener('click', function () { showSlide(i); });
+    dotBox.appendChild(b);
+    return b;
+  });
+  var slideAt = -1;
+  function showSlide(i) { slides.scrollTo({ left: i * slides.clientWidth, behavior: still ? 'auto' : 'smooth' }); }
+  function markSlide() {
+    var i = Math.round(slides.scrollLeft / Math.max(1, slides.clientWidth));
+    if (i === slideAt) return;
+    slideAt = i;
+    dots.forEach(function (b, j) { b.setAttribute('aria-current', j === i ? 'true' : 'false'); });
+  }
+  slides.addEventListener('scroll', markSlide, { passive: true });
+  markSlide();
+  if (!still) setInterval(function () {
+    if (document.hidden || slides.matches(':hover') || dotBox.matches(':hover') || slides.parentNode.matches(':focus-within')) return;
+    showSlide((slideAt + 1) % dots.length);
+  }, 6000);
+
   // ---------- 游戏方格 ----------
   var grid = document.getElementById('gameGrid');
   function renderGames(en) {
